@@ -76,27 +76,27 @@ GameManager.prototype.addRandomTile = function (isStart) {
   		// compute for my wife
   		// which position will merge many?
   		// add which value
-  		// simplest is put 2 or 4 near 2 and 4
+  		// simplest is put 3 or 6 near 3 and 6
   		if(this.canMergeAlmostMax()) {
   			return;
   		}
-  		var cell2 = this.grid.availableContentCell(2);
-  		var cell4 = this.grid.availableContentCell(4);
+  		var cell2 = this.grid.availableContentCell(3);
+  		var cell4 = this.grid.availableContentCell(6);
   		if (cell2.x === -1 && cell4.x === -1) {
   			this.addRandomTileHelper(0.5, 1);
   		} else if (cell2.x === -1) {
-  			var tile = new Tile(cell4, 4);
+  			var tile = new Tile(cell4, 6);
   			this.grid.insertTile(tile);
   		} else if (cell4.x === -1) {
-  			var tile = new Tile(cell2, 2);
+  			var tile = new Tile(cell2, 3);
   			this.grid.insertTile(tile);
   		} else {
-  			var value = Math.random() < 0.5 ? 2 : 4;
+  			var value = Math.random() < 0.5 ? 3 : 6;
   			if (value === 2) {
-  				var tile = new Tile(cell2, 2);
+  				var tile = new Tile(cell2, 3);
   				this.grid.insertTile(tile);
   			} else {
-  				var tile = new Tile(cell4, 4);
+  				var tile = new Tile(cell4, 6);
   				this.grid.insertTile(tile);
   			}
   		}
@@ -186,7 +186,7 @@ var iterStep = 1;
 }
 
 GameManager.prototype.addRandomTileHelper = function (rate, t) {
-  		var value = Math.random() < rate ? 2 : 4;
+  		var value = Math.random() < rate ? 3 : 6;
   		var tile;
   		var type = 0;
   		if (t) {
@@ -299,8 +299,8 @@ GameManager.prototype.move = function (direction) {
           // Update the score
           self.score += merged.value;
 
-          // The mighty 4096 tile
-          if (merged.value === 4096) self.won = true;
+          // The mighty 98304 tile
+          if (merged.value === 98304) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
