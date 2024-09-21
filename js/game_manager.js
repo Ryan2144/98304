@@ -92,7 +92,7 @@ GameManager.prototype.addRandomTile = function (isStart) {
   			this.grid.insertTile(tile);
   		} else {
   			var value = Math.random() < 0.5 ? 3 : 6;
-  			if (value === 2) {
+  			if (value === 3) {
   				var tile = new Tile(cell2, 3);
   				this.grid.insertTile(tile);
   			} else {
